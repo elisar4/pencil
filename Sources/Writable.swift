@@ -38,7 +38,7 @@ public extension Writable {
     
     /// write
     @discardableResult
-    public func write(to url: URL, options: Data.WritingOptions = []) -> Bool {
+    func write(to url: URL, options: Data.WritingOptions = []) -> Bool {
         do {
             try self.data.write(to: url, options: options)
             return true
@@ -49,7 +49,7 @@ public extension Writable {
     }
     
     /// Identifier of data
-    public var pencilIdentifier: Data {
+    var pencilIdentifier: Data {
         // count
         let name: String = self.pencilName
         var count: UInt8 = UInt8(name.lengthOfBytes(using: String.Encoding.utf8))
@@ -62,7 +62,7 @@ public extension Writable {
     }
     
     /// Whole of written data
-    public var data: Data {
+    var data: Data {
         let data: NSMutableData = NSMutableData(data: self.pencilIdentifier)
         for subdata in self.pencilHead + self.pencilBody {
             data.append(subdata)
