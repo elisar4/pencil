@@ -56,7 +56,7 @@ extension Set where Element: ReadWriteElement {
     
     public static func read(_ values: [Data]) -> Set<Element>? {
         
-        let elements = values.flatMap { (data: Data) -> Element? in
+        let elements = values.compactMap { (data: Data) -> Element? in
             let element: Element? = Pencil.read(data)
             return element
         }
@@ -112,7 +112,7 @@ extension Set where Element: CustomReadWriteElement {
     
     public static func read(_ values: [Data]) -> Set<Element>? {
         
-        let elements = values.flatMap { (data: Data) -> Element? in
+        let elements = values.compactMap { (data: Data) -> Element? in
             let element: Element? = Pencil.read(data)
             return element
         }
@@ -131,7 +131,7 @@ extension Set: Writable {
     }
     
     public func writable() -> [Writable] {
-        return self.flatMap {
+        return self.compactMap {
             return $0 as? Writable
         }
     }

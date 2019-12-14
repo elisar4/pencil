@@ -215,7 +215,7 @@ extension Dictionary: Writable {
         
         let writable = self.writable
         let sortedKeys: [String] = writable.keys.sorted()
-        let sortedValues: [Writable] = sortedKeys.flatMap { writable[$0] }
+        let sortedValues: [Writable] = sortedKeys.compactMap { writable[$0] }
         
         let count: Data = {
             var num: UInt16 = UInt16(writable.keys.count)
@@ -237,7 +237,7 @@ extension Dictionary: Writable {
     public var pencilBody: [Data] {
         let writable = self.writable
         let sortedKeys: [String] = writable.keys.sorted()
-        let sortedValues: [Writable] = sortedKeys.flatMap { writable[$0] }
+        let sortedValues: [Writable] = sortedKeys.compactMap { writable[$0] }
         return sortedKeys.map { $0.data(using: String.Encoding.utf8)! } + sortedValues.map { ($0.data as Data) }
     }
 }
